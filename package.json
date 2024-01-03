@@ -21,7 +21,6 @@
     "bootstrap": "^3.4.1",
     "http": "^0.0.1-security",
     "mammoth": "^1.6.0",
-    "ng2-file-upload": "^5.0.0",
     "path-browserify": "^1.0.1",
     "pdf-parse": "^1.1.1",
     "pdfjs-dist": "^4.0.379",
