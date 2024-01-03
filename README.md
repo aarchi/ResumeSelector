@@ -3,6 +3,8 @@
 
 The Resume Selection App is a web application built using Angular that enables users to upload a resume and receive insights on its chances of being selected for a job based on a provided job description. The application utilizes the OpenAI GPT-3.5 Turbo model for natural language processing.
 
+![Application Screenshot](/images/resumeselector.PNG)
+
 ## Table of Contents
 1. [Features](#features)
 2. [Getting Started](#getting-started)
