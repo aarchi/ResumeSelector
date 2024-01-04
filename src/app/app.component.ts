@@ -47,11 +47,11 @@ export class AppComponent {
       const chatGptApiEndpoint = 'https://api.openai.com/v1/chat/completions';
 
       const requestString = `
-**Job Description and Resume Evaluation**
+*Job Description and Resume Evaluation*
 
 Given the following job description and resume, your task is to estimate the chances of resume selection for this job in percentage. Provide insights, logical reasoning, and highlight keywords in bold. Ensure accuracy and consistency in your assessment. Follow the specified format:
 
-**Job Description:**
+*Job Description:*
 ${this.jobDescription}
 
 - Minimum Experience Required: ${this.minExperience} years
@@ -59,20 +59,28 @@ ${this.jobDescription}
 - Mandatory Skill: ${this.mandatorySkill}
 - Optional Skill: ${this.optionalSkill || 'Not specified'}
 
-**Resume:**
+*Resume:*
 ${this.fileContent}
 
-**Chances of Resume Selection: [Provide a percentage estimate]**
+Important note -
+Take min and max experience range strictly for calculating percentage
+Optional skill is not mandatory so don't use it for percentage calculatoion if its empty. But if its there then it will be in favour of candidate
 
-**Insights and Logic:**
+*Chances of Resume Selection: [Provide a percentage estimate]*
+
+*Insights and Logic:*
 1. Analyze the alignment of the resume with the job description.
-2. Highlight relevant **keywords** in both the job description and the resume.
+*keywords*
+2. Highlight relevant *keywords* in both the job description and the resume.
+*experience and skills*
 3. Consider the specified experience and skills, and evaluate how well the resume fulfills these criteria.
+*exceptional achievements*
 4. Comment on any exceptional achievements or experiences that enhance the candidate's suitability.
+*career stability*
 5. Assess the candidate's job-switching frequency. While this does not impact the percentage calculation, it provides context on the candidate's career stability.
 6. Ensure a consistent and thorough evaluation to maintain accuracy.
 
-Your response should be well-organized and in above format, providing a clear rationale for the estimated percentage. Thank you for your attention to detail.
+Your response should be well-organized and in above format, providing a clear rationale for the estimated percentage. Please use above format for displaying the results. Add labels and then explaing the insight. Thank you for your attention to detail.
 `;
 
 
