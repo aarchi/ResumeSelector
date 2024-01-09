@@ -4,7 +4,7 @@
   
 /* Add this CSS to change cursor and update color for the submit button */
 .custom-submit-button {
-    cursor: pointer; /* Change cursor to pointer */
+    cursor: h; /* Change cursor to pointer */
     background-color: #4CAF50; /* Update background color */
     color: white; /* Update text color */
   }
@@ -13,5 +13,21 @@
   .custom-submit-button:disabled {
     background-color: #cccccc; /* Update disabled background color */
     cursor: not-allowed; /* Change cursor to not-allowed when disabled */
+  }
+  .loading-text {
+    animation: fadeInOut 1.5s infinite alternate;
+  }
+  
+  @keyframes fadeInOut {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .loading-text {
+    font-size: 18px; /* Adjust the font size as needed */
+    margin-left: 10px; /* Add margin for spacing */
   }
   

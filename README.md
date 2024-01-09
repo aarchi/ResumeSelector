@@ -36,6 +36,8 @@ To run this project, you need to have the following software installed:
 npm install -g @angular/cli
 ```
 
+- **Python:** Ensure you have python installed. You can download it from the [official website](https://www.python.org/ftp/python/3.12.1/python-3.12.1-amd64.exe).
+
 ### 2.2 Installation
 
 1. clone the project on your local machine.
@@ -49,6 +51,17 @@ cd your-repo
 
 ```bash
 npm install
+```
+
+4. Install the angular dependencies:
+```bash
+cd python-server
+pip install Flask PyPDF2
+pip install flask_cors
+pip install docx2txt
+
+To run python server
+python app.py
 ```
 
 ## 3. Usage
@@ -74,7 +87,7 @@ Date of Birth: 29 March 1991
 Job Description: Total Experience - 8 Years, Technical Skill - Java, Angular
 ```
 
-- Upload your resume (text file), enter the job description, enter your GPT key, and click the "Upload" button.
+- Input your GPT key, Upload your resume (pdf,word,text), enter min/max experience, optional and mandatory skills and if you want to mention any special condition then add it in description input box and click the "Upload" button.
 - Wait for the AI response. The app will display insights on the chances of your resume being selected for the job.
 
 ## 4. Configuration

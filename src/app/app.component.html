@@ -8,101 +8,108 @@
 
   <div class="panel panel-primary">
     <div class="panel-body">
+      <!-- Form with ngSubmit event binding -->
       <form (ngSubmit)="onSubmit()" #resumeForm="ngForm">
-      <!-- Input field for OpenAI API Key -->
-<div class="form-group col-md-12">
-  <label for="apiKey">OpenAI API Key</label>
-  <input type="text" class="form-control" id="apiKey" name="apiKey" [(ngModel)]="apiKey"
-         placeholder="Enter your API key" required #apiKeyInput="ngModel"
-         [class.error]="apiKeyInput.invalid && (apiKeyInput.dirty || apiKeyInput.touched)">
-  <div *ngIf="apiKeyInput.invalid && (apiKeyInput.dirty || apiKeyInput.touched)" class="text-danger">
-    <div *ngIf="apiKeyInput.errors.required">OpenAI API Key is required.</div>
-  </div>
-</div>
 
-<!-- Min Experience -->
-<div class="form-group col-md-6">
-  <label for="minExperience">Min Experience</label>
-  <input type="number" class="form-control" id="minExperience" name="minExperience" [(ngModel)]="minExperience" 
-         placeholder="0" min="0" max="50" required #minExp="ngModel"
-         [class.error]="minExp.invalid && (minExp.dirty || minExp.touched)">
-  <div *ngIf="minExp.invalid && (minExp.dirty || minExp.touched)" class="text-danger">
-    <div *ngIf="minExp.errors.required">Min Experience is required.</div>
-    <div *ngIf="minExp.errors.min">Min Experience must be at least 0.</div>
-    <div *ngIf="minExp.errors.max">Min Experience cannot be greater than 50.</div>
-  </div>
-</div>
+        <!-- Input field for OpenAI API Key -->
+        <div class="form-group col-md-12">
+          <label for="apiKey">OpenAI API Key</label>
+          <input type="text" class="form-control" id="apiKey" name="apiKey" [(ngModel)]="apiKey"
+                 placeholder="Enter your API key" required #apiKeyInput="ngModel"
+                 [class.error]="apiKeyInput.invalid && (apiKeyInput.dirty || apiKeyInput.touched)">
+          <!-- Display error messages -->
+          <div *ngIf="apiKeyInput.invalid && (apiKeyInput.dirty || apiKeyInput.touched)" class="text-danger">
+            <div *ngIf="apiKeyInput.errors.required">OpenAI API Key is required.</div>
+          </div>
+        </div>
 
-<!-- Max Experience -->
-<div class="form-group col-md-6">
-  <label for="maxExperience">Max Experience</label>
-  <input type="number" class="form-control" id="maxExperience" name="maxExperience" [(ngModel)]="maxExperience" 
-         placeholder="50" min="0" max="50" required #maxExp="ngModel"
-         [class.error]="maxExp.invalid && (maxExp.dirty || maxExp.touched)">
-  <div *ngIf="maxExp.invalid && (maxExp.dirty || maxExp.touched)" class="text-danger">
-    <div *ngIf="maxExp.errors.required">Max Experience is required.</div>
-    <div *ngIf="maxExp.errors.min">Max Experience must be at least 0.</div>
-    <div *ngIf="maxExp.errors.max">Max Experience cannot be greater than 50.</div>
-  </div>
-</div>
+        <!-- Min Experience -->
+        <div class="form-group col-md-6">
+          <label for="minExperience">Min Experience</label>
+          <input type="number" class="form-control" id="minExperience" name="minExperience" [(ngModel)]="minExperience" 
+                 placeholder="0" min="0" max="50" required #minExp="ngModel"
+                 [class.error]="minExp.invalid && (minExp.dirty || minExp.touched)">
+          <div *ngIf="minExp.invalid && (minExp.dirty || minExp.touched)" class="text-danger">
+            <div *ngIf="minExp.errors.required">Min Experience is required.</div>
+            <div *ngIf="minExp.errors.min">Min Experience must be at least 0.</div>
+            <div *ngIf="minExp.errors.max">Min Experience cannot be greater than 50.</div>
+          </div>
+        </div>
 
-<!-- Mandatory Skill -->
-<div class="form-group col-md-6">
-  <label for="mandatorySkill">Mandatory Skill</label>
-  <input type="text" class="form-control" id="mandatorySkill" name="mandatorySkill" [(ngModel)]="mandatorySkill" 
-         placeholder="Enter mandatory skill" required #mandatorySkillInput="ngModel"
-         [class.error]="mandatorySkillInput.invalid && (mandatorySkillInput.dirty || mandatorySkillInput.touched)">
-  <div *ngIf="mandatorySkillInput.invalid && (mandatorySkillInput.dirty || mandatorySkillInput.touched)"
-       class="text-danger">
-    Mandatory Skill is required.
-  </div>
-</div>
+        <!-- Max Experience -->
+        <div class="form-group col-md-6">
+          <label for="maxExperience">Max Experience</label>
+          <input type="number" class="form-control" id="maxExperience" name="maxExperience" [(ngModel)]="maxExperience" 
+                 placeholder="50" min="0" max="50" required #maxExp="ngModel"
+                 [class.error]="maxExp.invalid && (maxExp.dirty || maxExp.touched)">
+          <div *ngIf="maxExp.invalid && (maxExp.dirty || maxExp.touched)" class="text-danger">
+            <div *ngIf="maxExp.errors.required">Max Experience is required.</div>
+            <div *ngIf="maxExp.errors.min">Max Experience must be at least 0.</div>
+            <div *ngIf="maxExp.errors.max">Max Experience cannot be greater than 50.</div>
+          </div>
+        </div>
 
-<!-- Optional Skill -->
-<div class="form-group col-md-6">
-  <label for="optionalSkill">Optional Skill</label>
-  <input type="text" class="form-control" id="optionalSkill" name="optionalSkill" [(ngModel)]="optionalSkill" 
-         placeholder="Enter optional skill">
-</div>
+        <!-- Mandatory Skill -->
+        <div class="form-group col-md-6">
+          <label for="mandatorySkill">Mandatory Skill</label>
+          <input type="text" class="form-control" id="mandatorySkill" name="mandatorySkill" [(ngModel)]="mandatorySkill" 
+                 placeholder="Enter mandatory skill" required #mandatorySkillInput="ngModel"
+                 [class.error]="mandatorySkillInput.invalid && (mandatorySkillInput.dirty || mandatorySkillInput.touched)">
+          <div *ngIf="mandatorySkillInput.invalid && (mandatorySkillInput.dirty || mandatorySkillInput.touched)"
+               class="text-danger">
+            Mandatory Skill is required.
+          </div>
+        </div>
 
-<!-- Input field for Job Description -->
-<div class="form-group col-md-12">
-  <label for="jobDescription">Description</label>
-  <input type="text" class="form-control" id="jobDescription" name="jobDescription"
-         [(ngModel)]="jobDescription" placeholder="Enter job description">
-</div>
+        <!-- Optional Skill -->
+        <div class="form-group col-md-6">
+          <label for="optionalSkill">Optional Skill</label>
+          <input type="text" class="form-control" id="optionalSkill" name="optionalSkill" [(ngModel)]="optionalSkill" 
+                 placeholder="Enter optional skill">
+        </div>
+
+        <!-- Input field for Job Description -->
+        <div class="form-group col-md-12">
+          <label for="jobDescription">Description</label>
+          <input type="text" class="form-control" id="jobDescription" name="jobDescription"
+                 [(ngModel)]="jobDescription" placeholder="Enter job description">
+        </div>
 
 <!-- Input field for Resume Upload -->
 <div class="form-group col-md-12">
-  <label for="resumeFile">Upload Resume</label>
-  <input type="file" class="form-control" id="resumeFile" (change)="onFileSelected($event)"
-         accept=".pdf, .doc, .docx" required>
-  <small class="text-muted">Accepted formats: .txt (This prototype only works with text files)</small>
+  <label for="resumeFiles">Upload Resumes ( Maximum 3 files allowed) </label>
+  <input type="file" multiple="multiple" class="form-control" id="resumeFiles" (change)="onFileSelected($event)"
+         accept=".pdf, .doc, .docx" multiple required>
+  <small class="text-muted">Accepted formats: .pdf, .doc, .docx, txt</small>
+
+  <!-- Error label for file count limit -->
+  <div *ngIf="fileCountExceeded" class="text-danger">Please select no more than 3 files.</div>
 </div>
 
-<!-- Submit Button -->
-<div class="form-group row">
-  <div class="col-md-10 offset-md-2">
-    <button type="submit" class="btn btn-primary custom-submit-button" [disabled]="!resumeFile">Upload</button>
-  </div>
-</div>
-
+        <!-- Submit Button -->
+        <div class="form-group row">
+          <div class="col-md-10 offset-md-2">
+            <!-- Disable the button if resumeFiles is not selected -->
+            <button type="submit" class="btn btn-primary custom-submit-button" [disabled]="!resumeFiles || resumeFiles.length === 0">Upload</button>
+          </div>
+        </div>
       </form>
 
+      <!-- Horizontal line -->
       <hr>
+  <div *ngIf="loading" class="loading-indicator">
+    <!-- You can use a spinner or any loading message here -->
+    <img src="../assets/images/Hourglass.gif" alt="Loading">  <span class="loading-text">Evaluating...</span>
+  </div>
+<!-- AI Response Section -->
+<div *ngIf="chatGptResponse" class="ai-response">
+  <!-- Loading indicator -->
 
-      <!-- AI Response Section -->
-      <div *ngIf="chatGptResponse">
-        <h4>AI Response:</h4>
-        <p [innerHTML]="formatChatGptResponse(chatGptResponse.choices[0].message.content)"></p>
-      </div>
 
-      <!-- Error Message Section -->
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
-      </div>
-
-      <hr>
-    </div>
+  <!-- Display AI response -->
+  <div *ngIf="!loading">
+    <h4>AI Response:</h4>
+    <p [innerHTML]="formatChatGptResponse(chatGptResponse.choices[0].message.content)"></p>
   </div>
 </div>
+
