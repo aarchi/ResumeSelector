@@ -25,8 +25,8 @@ export class AppComponent {
 
   loading: boolean = false;
 
-    // Add this property to track file count exceeded status
-    fileCountExceeded: boolean = false;
+  // Add this property to track file count exceeded status
+  fileCountExceeded: boolean = false;
 
   // Inject HttpClient and PdfService into the constructor
   constructor(private http: HttpClient, private pdfService: PdfService) { }
@@ -36,18 +36,18 @@ export class AppComponent {
     return responseContent.replace(/\n/g, '<br>');
   }
 
-   // Define a function to handle file selection
-   onFileSelected(event: any) {
+  // Define a function to handle file selection
+  onFileSelected(event: any) {
     // Ensure that the number of selected files is not more than 3
-    if (event.target.files.length > 3) {
+    if (event.target.files.length > 2) {
       // Set the fileCountExceeded flag to true
       this.fileCountExceeded = true;
       // Reset the file input
       event.target.value = null;
       return;
     }
-     // If the file count is within the limit, reset the fileCountExceeded flag
-     this.fileCountExceeded = false;
+    // If the file count is within the limit, reset the fileCountExceeded flag
+    this.fileCountExceeded = false;
     this.resumeFiles = Array.from(event.target.files);
 
     // Read the file content as text for each file
@@ -55,7 +55,7 @@ export class AppComponent {
       if (resumeFile.type === 'application/pdf' || resumeFile.type === 'application/msword' || resumeFile.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
         this.pdfService.extractTextFromPDF(resumeFile).subscribe(
           (response) => {
-            const extractedText = response.text;
+            const extractedText = response.text.replace(/\s+/g, ' ').trim();
             console.log(`Extracted text for Resume ${index + 1}:`, extractedText);
             this.fileContents[index] = extractedText;
           },
@@ -76,14 +76,21 @@ export class AppComponent {
       }
     });
   }
-
- // Define a function to handle form submission
-onSubmit() {
-  // Check if required fields are filled
-  if (this.apiKey && this.resumeFiles.length > 0 && this.minExperience <= this.maxExperience && this.mandatorySkill) {
-    this.loading = true;  // Set loading to true
-    // Initialize the request string with job description and other details
-    let requestString = `
+  // Function to reset the form
+  resetForm() {
+    // Optionally, reset the file input field
+    const fileInput = document.getElementById('resumeFiles') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
+  }
+  // Define a function to handle form submission
+  onSubmit() {
+    // Check if required fields are filled
+    if (this.apiKey && this.resumeFiles.length > 0 && this.minExperience <= this.maxExperience && this.mandatorySkill) {
+      this.loading = true;  // Set loading to true
+      // Initialize the request string with job description and other details
+      let requestString = `
       *Job Description:*
       ${this.jobDescription}
 
@@ -115,17 +122,17 @@ onSubmit() {
       -------------------------------
     `;
 
-    // Append each resume with a label to the request string
-    this.resumeFiles.forEach((resumeFile, index) => {
-      requestString += `
+      // Append each resume with a label to the request string
+      this.resumeFiles.forEach((resumeFile, index) => {
+        requestString += `
         *Resume ${index + 1}:*
         ${this.fileContents[index]}
         -------------------------------
       `;
-    });
+      });
 
-     // Continue with the rest of your code to make the API request with the updated requestString
-     this.makeChatGptRequest(requestString);
+      // Continue with the rest of your code to make the API request with the updated requestString
+      this.makeChatGptRequest(requestString);
     }
   }
 
@@ -158,6 +165,8 @@ onSubmit() {
           this.chatGptResponse = response;
           console.log('ChatGPT response:', response);
           this.loading = false;  // Reset loading to false
+          // Reset the form after receiving the response
+          this.resetForm();
         },
         (errorResponse: HttpErrorResponse) => {
           if (errorResponse.status === 429) {
